@@ -1,8 +1,11 @@
 import React from "react";
-import Board from "./components/Board";
+import KanbanBoard from './components/KanbanBoard';
+import './App.css';
 
 function App() {
-  return <Board />;
+  return (<div className="App">
+    <KanbanBoard />
+  </div>);
 }
 
 export default App;
