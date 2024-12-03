@@ -69,14 +69,14 @@ const TicketCard = ({ ticket, group }) => {
         {group != "user" && <Avatar name={ticket.username} />}
       </div>
       <span className='ticket-title'>
-        {group != "status" && <img src={statusLogoMap[ticket.status]} alt="Services Icon" className="priority" />}
+        {group != "status" && <img src={statusLogoMap[ticket.status]} alt="status" className="priority" />}
         {ticket.title}
       </span>
       <div className='ticket-tags'>
-        {group != "priority" && <img src={priorityLogoMap[ticket.priority]} alt="Services Icon" className="priority" />}
+        {group != "priority" && <img src={priorityLogoMap[ticket.priority]} alt="priority" className="priority" />}
         {ticket.tag.map((tag) => (
           <div className='tag'>
-            <img src={gray_circle} alt="Services Icon" className="gray_circle" /> <span> {tag}</span>
+            <img src={gray_circle} alt="circle" className="gray_circle" /> <span> {tag}</span>
           </div>
         ))}
       </div>

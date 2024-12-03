@@ -21,8 +21,8 @@ const Header = ({ onGroupChange, onSortChange }) => {
       <div className="dropdown">
         {/* Dropdown Toggle Button */}
         <button className="dropdown-toggle" onClick={toggleDropdown}>
-          <img src={display} alt="Services Icon" className="dropdown-icon" />
-          <span className='display'>Display</span> <img src={down} alt="Services Icon" className="dropdown-icon" />
+          <img src={display} alt="display" className="dropdown-icon" />
+          <span className='display'>Display</span> <img src={down} alt="down" className="dropdown-icon" />
         </button>
 
         {/* Dropdown Menu */}

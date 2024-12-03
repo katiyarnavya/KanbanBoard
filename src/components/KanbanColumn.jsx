@@ -51,10 +51,10 @@ const KanbanColumn = ({ group, title, tickets }) => {
       <div className='column-title'>
         <div>
           {
-            priorityMap[title] && <img src={priorityLogoMap[title]} alt={priorityLogoMap[title]} className="priority" />
+            group == "priority" && <img src={priorityLogoMap[title]} alt={priorityLogoMap[title]} className="priority" />
           }
           {
-            statusMap[title] && <img src={statusLogoMap[title]} alt={statusLogoMap[title]} className="priority" />
+            group == "status" && <img src={statusLogoMap[title]} alt={statusLogoMap[title]} className="priority" />
           }
           {
             group == "user" && <><Avatar name={title} /> <span></span></>
@@ -63,8 +63,8 @@ const KanbanColumn = ({ group, title, tickets }) => {
           <span className='column-title-count'> {tickets?.length} </span>
         </div>
         <div>
-          <img src={add} alt="Services Icon" className="priority" />
-          <img src={three_dot_menu} alt="Services Icon" className="priority" />
+          <img src={add} alt="add" className="priority" />
+          <img src={three_dot_menu} alt="menu" className="priority" />
         </div>
       </div>
       {tickets.map((ticket) => (

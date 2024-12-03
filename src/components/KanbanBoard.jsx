@@ -51,12 +51,7 @@ const KanbanBoard = () => {
         priority: priorityMap[ticket.priority] || 'Unknown Priority',
       }));
     });
-    // con
-    // for (let i = 0; i < groupedData.length; i++) {
-    //     console.log(groupedData[i]);
-    // }
 
-    // console.log('data: ', groupedData);
     return groupedData;
   };
 
