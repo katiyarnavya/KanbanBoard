@@ -11,6 +11,7 @@ import to_do from '../assets/To-do.svg';
 import backlog from '../assets/Backlog.svg';
 import in_progress from '../assets/in-progress.svg';
 import done from '../assets/Done.svg';
+import Avatar from './Avatar';
 
 const priorityMap = {
   4: 'Urgent',
@@ -42,8 +43,8 @@ const statusLogoMap = {
 }
 
 
-const KanbanColumn = ({ title, tickets }) => {
-  // console.log('title: ', title);
+const KanbanColumn = ({ group, title, tickets }) => {
+  // console.log('title: ----- ', title, group);
   // console.log('tickets: ', tickets);
   return (
     <div className="kanban-column">
@@ -55,6 +56,9 @@ const KanbanColumn = ({ title, tickets }) => {
           {
             statusMap[title] && <img src={statusLogoMap[title]} alt={statusLogoMap[title]} className="priority" />
           }
+          {
+            group == "user" && <><Avatar name={title} /> <span></span></>
+          }
           <span className='column-title-name'>{priorityMap[title] ? priorityMap[title] : title}</span>
           <span className='column-title-count'> {tickets?.length} </span>
         </div>
@@ -64,7 +68,7 @@ const KanbanColumn = ({ title, tickets }) => {
         </div>
       </div>
       {tickets.map((ticket) => (
-        <TicketCard key={ticket.id} ticket={ticket} header={title} />
+        <TicketCard key={ticket.id} ticket={ticket} group={group} />
       ))}
     </div>
   );

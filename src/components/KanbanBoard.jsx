@@ -27,10 +27,11 @@ const KanbanBoard = () => {
     let groupedData = {};
     tickets.forEach((ticket) => {
       let key = ticket[group];
+      const user = users.find((u) => u.id === ticket.userId);
       if (group === 'user') {
-        const user = users.find((u) => u.id === ticket.userId);
         key = user ? user.name : 'Unassigned';
       }
+      ticket.username = user.name;
       if (!groupedData[key]) groupedData[key] = [];
       groupedData[key].push(ticket);
     });
@@ -65,7 +66,7 @@ const KanbanBoard = () => {
       <div className="kanban-board">
         {Object.entries(getGroupedData()).map(([groupKey, tickets]) => (
           // {console.log(groupKey,tickets)};
-          <KanbanColumn key={groupKey} title={groupKey} tickets={tickets} />
+          <KanbanColumn key={groupKey} group={group} title={groupKey} tickets={tickets} />
         ))}
       </div>
     </div>

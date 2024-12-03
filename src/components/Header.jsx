@@ -6,6 +6,8 @@ import display from '../assets/Display.svg';
 const Header = ({ onGroupChange, onSortChange }) => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [groupValue, setGroupValue] = useState("status");
+  const [orderValue, setOrderValue] = useState("priority");
 
   const toggleDropdown = () => {
     setIsOpen((prevState) => !prevState);
@@ -29,10 +31,12 @@ const Header = ({ onGroupChange, onSortChange }) => {
             <li>
               <div className='selection'>
                 <span>Grouping </span>
-                <select onChange=
+                <select value={groupValue} onChange=
                   {(e) => {
-                    onGroupChange(e.target.value);
-                    // closeDropdown();
+                    const group = e.target.value;
+                    onGroupChange(group);
+                    closeDropdown();
+                    setGroupValue(group)
                   }
                   }
                 >
@@ -46,7 +50,12 @@ const Header = ({ onGroupChange, onSortChange }) => {
 
               <div className='selection'>
                 <span>Ordering </span>
-                <select onChange={(e) => onSortChange(e.target.value)}>
+                <select value={orderValue} onChange={(e) => {
+                  const order = e.target.value;
+                  onSortChange(order)
+                  closeDropdown();
+                  setOrderValue(order)
+                }}>
                   <option value="priority">Priority</option>
                   <option value="title">Title</option>
                 </select>

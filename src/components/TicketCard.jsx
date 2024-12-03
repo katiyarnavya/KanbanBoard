@@ -11,6 +11,9 @@ import to_do from '../assets/To-do.svg';
 import backlog from '../assets/Backlog.svg';
 import in_progress from '../assets/in-progress.svg';
 import done from '../assets/Done.svg';
+import cancelled from '../assets/Cancelled.svg'
+import gray_circle from '../assets/gray_circle.png'
+import Avatar from './Avatar';
 
 const priorityColors = {
   'Urgent': '#d9534f',  // Urgent - Red
@@ -40,33 +43,41 @@ const statusMap = {
   "In progress": 2,
   "Backlog": 3,
   "Done": 4,
+  "Cancelled": 5,
+  "Canceled": 5,
 }
 const statusLogoMap = {
   "Todo": to_do,
   "In progress": in_progress,
   "Backlog": backlog,
-  "Done": done
+  "Done": done,
+  "Cancelled": cancelled,
+  "Canceled": cancelled
 }
 
 
 
-const TicketCard = ({ ticket, header }) => {
-  // console.log("ticket: -------", ticket, header)
+const TicketCard = ({ ticket, group }) => {
+  // console.log("ticket: -------", ticket, group)
   return (
     <div
       className="ticket-card"
       style={{ borderLeft: `5px solid ${priorityColors[ticket.priority]}` }}
     >
-      <span className='ticket-id'>{ticket.id} </span>
+      <div className='ticket-id-user' >
+        <span className='ticket-id'>{ticket.id} </span>
+        {group != "user" && <Avatar name={ticket.username} />}
+      </div>
       <span className='ticket-title'>
-        {!statusMap[header] && <img src={statusLogoMap[ticket.status]} alt="Services Icon" className="priority" />}
+        {group != "status" && <img src={statusLogoMap[ticket.status]} alt="Services Icon" className="priority" />}
         {ticket.title}
       </span>
       <div className='ticket-tags'>
-
-        <img src={priorityMap[header] ? three_dot_menu : priorityLogoMap[ticket.priority]} alt="Services Icon" className="priority" />
+        {group != "priority" && <img src={priorityLogoMap[ticket.priority]} alt="Services Icon" className="priority" />}
         {ticket.tag.map((tag) => (
-          <span className='tag'>{tag}</span>
+          <div className='tag'>
+            <img src={gray_circle} alt="Services Icon" className="gray_circle" /> <span> {tag}</span>
+          </div>
         ))}
       </div>
       {/* <p>Status: {ticket.status}</p>
